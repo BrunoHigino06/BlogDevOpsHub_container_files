@@ -1,5 +1,5 @@
 # Use the official WordPress image from Docker Hub
-FROM wordpress:latest
+FROM nginx:latest
 
 # Install MySQL client to connect to the external database
 RUN apt-get update && \
@@ -7,9 +7,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Set up custom entrypoint to wait for the MySQL service to be available
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-ENTRYPOINT ["docker-entrypoint.sh"]
-
-# Start WordPress with Apache as the server
-CMD ["apache2-foreground"]
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
