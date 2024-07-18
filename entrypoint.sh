@@ -7,6 +7,7 @@ connection_simulator() {
 
   while $connection; do
     echo "Connection done!"
+    echo "Connection done!" >> ./var/tmp/conection_log_file.txt
     sleep 5
   done
 }
