@@ -1,5 +1,4 @@
-name: BlogDevOpsHub Workflow
-
+name: BlogDevOpsHub Image builder
 on:
   workflow_dispatch:
 
