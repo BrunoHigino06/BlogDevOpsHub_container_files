@@ -47,4 +47,8 @@ jobs:
         path: .
 
     - name: Build and push Docker image
-      run: ls -a
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/devopshub:latest
