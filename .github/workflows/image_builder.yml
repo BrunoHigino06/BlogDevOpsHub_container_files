@@ -29,11 +29,5 @@ jobs:
     needs: docker_hub_login
     environment: image_builder
     steps:
-    - name: DevOpsHub_container_files checkout
-      uses: actions/checkout@v2
-      with:
-        repository: brunohigino06/DevOpsHub_container_files
-        path: DevOpsHub_container_files
-
     - name: location file
       run: ls -a
