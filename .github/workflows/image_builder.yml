@@ -35,6 +35,12 @@ jobs:
     needs: docker_hub_login
     environment: image_builder
     steps:
+    - name: test folder location
+      run: ls
+
+    - name: test folder location
+      run: pwd
+      
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
