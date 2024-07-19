@@ -36,9 +36,6 @@ jobs:
     environment: image_builder
     steps:
     - name: test folder location
-      run: cd /home/runner/work/DevOpsHub_container_files/
-
-    - name: test folder location
       run: ls
 
     - name: test folder location
