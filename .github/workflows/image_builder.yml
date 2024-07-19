@@ -40,4 +40,4 @@ jobs:
       with:
         context: ./DevOpsHub_container_files
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/my-image:latest  
+        tags: ${{ secrets.DOCKER_USERNAME }}/devopshub:latest  
