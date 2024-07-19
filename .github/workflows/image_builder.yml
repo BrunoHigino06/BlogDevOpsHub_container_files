@@ -1,4 +1,5 @@
 name: DevOpsHub Image builder
+
 on:
   workflow_dispatch:
 
@@ -7,18 +8,23 @@ jobs:
     runs-on: ubuntu-latest
     environment: image_builder
     steps:
-    - name: Checkout repository
+    - name: Checkout main repository
       uses: actions/checkout@v3
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-    
+      
     - name: DevOpsHub_container_files checkout
       uses: actions/checkout@v2
       with:
         repository: brunohigino06/DevOpsHub_container_files
         path: DevOpsHub_container_files
- 
+
+    - name: Upload repository artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: repo-files
+        path: |
+          .
+          ./DevOpsHub_container_files
+
   docker_hub_login:
     runs-on: ubuntu-latest
     needs: repository-checkout
@@ -29,11 +35,21 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PAT }}
-  
+
   build_and_push:
     runs-on: ubuntu-latest
-    needs: docker_hub_login
+    needs: [repository-checkout, docker_hub_login]
     environment: image_builder
     steps:
-    - name: find the funcking dockerfile
-      run: ls -a
+    - name: Download repository artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: repo-files
+        path: .
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./DevOpsHub_container_files
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/devopshub:latest
