@@ -17,6 +17,13 @@ jobs:
         repository: brunohigino06/DevOpsHub_container_files
         path: DevOpsHub_container_files
 
+    - name: Upload repository artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: repo-files
+        path: |
+          .
+
   docker_hub_login:
     runs-on: ubuntu-latest
     needs: repository-checkout
@@ -33,5 +40,11 @@ jobs:
     needs: [repository-checkout, docker_hub_login]
     environment: image_builder
     steps:
+    - name: Download repository artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: repo-files
+        path: .
+
     - name: Build and push Docker image
       run: ls -a
