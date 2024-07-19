@@ -38,6 +38,6 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: /home/runner/work/DevOpsHub_container_files/
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/devopshub:latest  
