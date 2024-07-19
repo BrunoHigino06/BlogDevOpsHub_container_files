@@ -36,4 +36,4 @@ jobs:
     environment: image_builder
     steps:
     - name: find the funcking dockerfile
-      run: ls -a ./DevOpsHub_container_files
+      run: ls -a
