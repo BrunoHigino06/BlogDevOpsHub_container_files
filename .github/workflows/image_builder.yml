@@ -29,5 +29,11 @@ jobs:
     needs: docker_hub_login
     environment: image_builder
     steps:
-    - name: location file
+    - name: DevOpsHub_container_files checkout
+      uses: actions/checkout@v2
+      with:
+        repository: brunohigino06/DevOpsHub_container_files
+        path: DevOpsHub_container_files
+    
+    - name: find the funcking dockerfile
       run: ls -a
