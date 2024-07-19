@@ -36,4 +36,7 @@ jobs:
         path: DevOpsHub_container_files
     
     - name: find the funcking dockerfile
+      run: cd DevOpsHub_container_files
+    
+    - name: find the funcking dockerfile
       run: ls -a
