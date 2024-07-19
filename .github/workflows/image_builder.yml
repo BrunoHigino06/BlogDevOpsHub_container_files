@@ -35,9 +35,11 @@ jobs:
     needs: docker_hub_login
     environment: image_builder
     steps:
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v5
+    - name: DevOpsHub_container_files checkout
+      uses: actions/checkout@v2
       with:
-        context: /home/runner/work/DevOpsHub_container_files/
-        push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/devopshub:latest  
+        repository: brunohigino06/DevOpsHub_container_files
+        path: DevOpsHub_container_files
+
+    - name: location file
+      run: ls -a
