@@ -10,12 +10,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       
-    - name: DevOpsHub_container_files checkout
-      uses: actions/checkout@v2
-      with:
-        repository: brunohigino06/DevOpsHub_container_files
-        path: container_repository
-
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
  
@@ -35,8 +29,19 @@ jobs:
     needs: docker_hub_login
     environment: image_builder
     steps:
-    - name: test folder location
-      run: ls
 
-    - name: test folder location
-      run: pwd
+    - name: DevOpsHub_container_files checkout
+      uses: actions/checkout@v2
+      with:
+        repository: brunohigino06/DevOpsHub_container_files
+        path: container_repository
+    
+    - name: DevOpsHub_container_files checkout
+      run: pwd    
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/my-image:latest  
