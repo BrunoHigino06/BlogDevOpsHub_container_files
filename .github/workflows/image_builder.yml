@@ -34,9 +34,6 @@ jobs:
       with:
         repository: brunohigino06/DevOpsHub_container_files
         path: DevOpsHub_container_files
-    
+       
     - name: find the funcking dockerfile
-      run: cd DevOpsHub_container_files
-    
-    - name: find the funcking dockerfile
-      run: ls -a
+      run: ls -a ./DevOpsHub_container_files
